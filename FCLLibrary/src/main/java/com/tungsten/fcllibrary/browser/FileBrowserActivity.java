@@ -132,7 +132,9 @@ public class FileBrowserActivity extends FCLActivity implements View.OnClickList
 
     @Override
     public void onBackPressed() {
-        if (currentPath.getParent() != null && !currentPath.toString().equals(Environment.getExternalStorageDirectory().getAbsolutePath())) {
+          //这里写到根路径了 肯定是不可以的
+//        if (currentPath.getParent() != null && !currentPath.toString().equals(Environment.getExternalStorageDirectory().getAbsolutePath())) {
+        if (currentPath.getParent() != null && !currentPath.toString().equals(this.getDataDir().getAbsolutePath())) {
             refreshList(currentPath.getParent());
         } else {
             setResult(Activity.RESULT_CANCELED);
@@ -143,7 +145,9 @@ public class FileBrowserActivity extends FCLActivity implements View.OnClickList
     @Override
     public void onClick(View view) {
         if (view == back) {
-            if (currentPath.getParent() != null && !currentPath.toString().equals(Environment.getExternalStorageDirectory().getAbsolutePath())) {
+            //这里写到根路径了 肯定是不可以的
+//            if (currentPath.getParent() != null && !currentPath.toString().equals(Environment.getExternalStorageDirectory().getAbsolutePath())) {
+            if (currentPath.getParent() != null && !currentPath.toString().equals(this.getDataDir().getAbsolutePath())) {
                 refreshList(currentPath.getParent());
             } else {
                 setResult(Activity.RESULT_CANCELED);
@@ -155,7 +159,9 @@ public class FileBrowserActivity extends FCLActivity implements View.OnClickList
             finish();
         }
         if (view == sharedDir) {
-            refreshList(Environment.getExternalStorageDirectory().toPath());
+            //这里写到根路径了 肯定是不可以的
+//            refreshList(Environment.getExternalStorageDirectory().toPath());
+            refreshList(view.getContext().getDataDir().toPath());
         }
         if (view == privateDir) {
             if (getExternalCacheDir().getParent() != null) {

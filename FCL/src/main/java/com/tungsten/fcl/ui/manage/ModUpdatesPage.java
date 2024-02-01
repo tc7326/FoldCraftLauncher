@@ -140,7 +140,10 @@ public class ModUpdatesPage extends FCLTempPage implements View.OnClickListener 
     }
 
     private void exportList() {
-        Path path = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/FCL", "fcl-mod-update-list-" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH-mm-ss")) + ".csv").toPath();
+
+        //这里写到根路径了 肯定是不可以的
+//        Path path = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/FCL", "fcl-mod-update-list-" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH-mm-ss")) + ".csv").toPath();
+        Path path = new File(listView.getContext().getDataDir().getAbsolutePath() + "/FCL", "fcl-mod-update-list-" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH-mm-ss")) + ".csv").toPath();
 
         TaskDialog taskDialog = new TaskDialog(getContext(), TaskCancellationAction.NORMAL);
         taskDialog.setTitle(getContext().getString(R.string.button_export));

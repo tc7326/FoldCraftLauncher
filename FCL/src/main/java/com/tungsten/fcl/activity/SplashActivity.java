@@ -55,21 +55,23 @@ public class SplashActivity extends FCLActivity {
 
     private void checkPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            if (Environment.isExternalStorageManager()) {
-                init();
-            } else {
-                Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
-                intent.setData(Uri.parse("package:" + getPackageName()));
-                ResultListener.startActivityForResult(this, intent, RequestCodes.PERMISSION_REQUEST_CODE, (requestCode, resultCode, data) -> {
-                    if (requestCode == RequestCodes.PERMISSION_REQUEST_CODE) {
-                        if (Environment.isExternalStorageManager()) {
-                            init();
-                        } else {
-                            recheckPermission();
-                        }
-                    }
-                });
-            }
+            //高版本 使用APP自己的存储 无需申请权限
+            init();
+//            if (Environment.isExternalStorageManager()) {
+//                init();
+//            } else {
+//                Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
+//                intent.setData(Uri.parse("package:" + getPackageName()));
+//                ResultListener.startActivityForResult(this, intent, RequestCodes.PERMISSION_REQUEST_CODE, (requestCode, resultCode, data) -> {
+//                    if (requestCode == RequestCodes.PERMISSION_REQUEST_CODE) {
+//                        if (Environment.isExternalStorageManager()) {
+//                            init();
+//                        } else {
+//                            recheckPermission();
+//                        }
+//                    }
+//                });
+//            }
         } else {
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
                 init();

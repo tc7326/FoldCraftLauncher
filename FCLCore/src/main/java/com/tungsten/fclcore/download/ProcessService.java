@@ -39,7 +39,9 @@ public class ProcessService extends Service {
         String jre = "jre" + java;
         FCLConfig config = new FCLConfig(
                 getApplicationContext(),
-                Environment.getExternalStorageDirectory().getAbsolutePath() + "/FCL/log",
+                //这里写到根路径了 肯定是不可以的
+//                Environment.getExternalStorageDirectory().getAbsolutePath() + "/FCL/log",
+                this.getApplicationContext().getDataDir().getAbsolutePath() + "/FCL/log",
                 getApplicationContext().getDir("runtime", 0).getAbsolutePath() + "/java/" + jre,
                 getApplicationContext().getCacheDir() + "/fclauncher",
                 null,

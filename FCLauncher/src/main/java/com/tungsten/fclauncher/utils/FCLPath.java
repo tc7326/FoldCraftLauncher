@@ -30,7 +30,7 @@ public class FCLPath {
     public static String CONTROLLER_DIR;
 
     public static String PRIVATE_COMMON_DIR;
-    public static String SHARED_COMMON_DIR = Environment.getExternalStorageDirectory().getAbsolutePath() + "/FCL/.minecraft";
+    public static String SHARED_COMMON_DIR;
 
     public static String AUTHLIB_INJECTOR_PATH;
     public static String MULTIPLAYER_FIX_PATH;
@@ -40,9 +40,14 @@ public class FCLPath {
     public static void loadPaths(Context context) {
         CONTEXT = context;
 
+        //这里写到根路径了 肯定是不可以的
+        SHARED_COMMON_DIR = context.getDataDir().getAbsolutePath() + "/FCL/.minecraft";
+
         NATIVE_LIB_DIR = context.getApplicationInfo().nativeLibraryDir;
 
-        LOG_DIR = Environment.getExternalStorageDirectory().getAbsolutePath() + "/FCL/log";
+        //这里写到根路径了 肯定是不可以的
+//        LOG_DIR = Environment.getExternalStorageDirectory().getAbsolutePath() + "/FCL/log";
+        LOG_DIR = context.getDataDir().getAbsolutePath() + "/FCL/log";
         CACHE_DIR = context.getCacheDir() + "/fclauncher";
 
         RUNTIME_DIR = context.getDir("runtime", 0).getAbsolutePath();
@@ -58,7 +63,10 @@ public class FCLPath {
         FILES_DIR = context.getFilesDir().getAbsolutePath();
         PLUGIN_DIR = FILES_DIR + "/plugins";
         BACKGROUND_DIR = FILES_DIR + "/background";
-        CONTROLLER_DIR = Environment.getExternalStorageDirectory().getAbsolutePath() + "/FCL/control";
+
+        //这里写到根路径了 肯定是不可以的
+//        CONTROLLER_DIR = Environment.getExternalStorageDirectory().getAbsolutePath() + "/FCL/control";
+        CONTROLLER_DIR = context.getDataDir().getAbsolutePath() + "/FCL/control";
 
         PRIVATE_COMMON_DIR = context.getExternalFilesDir(".minecraft").getAbsolutePath();
 

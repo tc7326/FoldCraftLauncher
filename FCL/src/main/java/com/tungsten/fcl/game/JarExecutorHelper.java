@@ -35,7 +35,9 @@ public class JarExecutorHelper {
         ArrayList<String> suffix = new ArrayList<>();
         suffix.add(".jar");
         FileBrowser.Builder builder = new FileBrowser.Builder(context);
-        builder.setInitDir(Environment.getExternalStorageDirectory().getAbsolutePath());
+        //这里写到根路径了 肯定是不可以的
+//        builder.setInitDir(Environment.getExternalStorageDirectory().getAbsolutePath());
+        builder.setInitDir(context.getDataDir().getAbsolutePath());
         builder.setLibMode(LibMode.FILE_CHOOSER);
         builder.setSelectionMode(SelectionMode.SINGLE_SELECTION);
         builder.setSuffix(suffix);

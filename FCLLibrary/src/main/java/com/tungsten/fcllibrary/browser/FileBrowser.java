@@ -30,12 +30,16 @@ public class FileBrowser implements Serializable {
 
     private LibMode libMode = LibMode.FILE_BROWSER;
     private SelectionMode selectionMode = SelectionMode.SINGLE_SELECTION;
-    private String initDir = Environment.getExternalStorageDirectory().getAbsolutePath();
+
+    //这里写到根路径了 肯定是不可以的
+//    private String initDir = Environment.getExternalStorageDirectory().getAbsolutePath();
+    private String initDir;
     private ArrayList<String> suffix = new ArrayList<>();
     private String title;
 
-    public FileBrowser(String title) {
+    public FileBrowser(String title,Context context) {
         this.title = title;
+        this.initDir = context.getDataDir().getAbsolutePath();
     }
 
     public LibMode getLibMode() {
@@ -71,7 +75,7 @@ public class FileBrowser implements Serializable {
         private FileBrowser fileBrowser;
 
         public Builder(Context context) {
-            fileBrowser = new FileBrowser(context.getString(R.string.file_browser_title));
+            fileBrowser = new FileBrowser(context.getString(R.string.file_browser_title),context);
         }
 
         public FileBrowser create() {
