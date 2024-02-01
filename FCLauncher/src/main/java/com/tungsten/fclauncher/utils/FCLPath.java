@@ -68,7 +68,8 @@ public class FCLPath {
 //        CONTROLLER_DIR = Environment.getExternalStorageDirectory().getAbsolutePath() + "/FCL/control";
         CONTROLLER_DIR = context.getDataDir().getAbsolutePath() + "/FCL/control";
 
-        PRIVATE_COMMON_DIR = context.getExternalFilesDir(".minecraft").getAbsolutePath();
+//        PRIVATE_COMMON_DIR = context.getExternalFilesDir(".minecraft").getAbsolutePath();
+        PRIVATE_COMMON_DIR = context.getDataDir().getAbsolutePath()+"/.minecraft";
 
         AUTHLIB_INJECTOR_PATH = PLUGIN_DIR + "/authlib-injector.jar";
         MULTIPLAYER_FIX_PATH = PLUGIN_DIR + "/MultiplayerFix.jar";
